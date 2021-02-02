@@ -1,29 +1,45 @@
-import React, {　useState, useEffect　} from "react";
-import ReactDOM from 'react-dom';
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom'
 
-const App = () => {
-  const [count, setCount] = useState(10);
-
-  const dec = () => {
-    setCount(count - 1);
-  };
-
-  const inc = () => {
-    setCount(count + 1);
-  };
-
-  return(
-    <div>
-      <p>Count: {count}</p>
-      <button onClick={dec}>-</button>
-      <button onClick={inc}>+</button>
-    </div>
+function AppOne() {
+  const [vote, setVote] = useState(
+    {
+      kinoko: 0,
+      takenoko: 0
+    }
   );
-};
+
+  const voteKinoko = () => {
+    setVote(
+      {
+        ...vote,
+        kinoko: vote.kinoko + 1
+      }
+    )
+  };
+  console.log(vote);
+
+  const voteTakenoko = () => {
+    setVote(
+      {
+        ...vote,
+        takenoko: vote.takenoko + 1
+      }
+    )
+  };
+  
+  return (
+    <>
+      <p>きのこ: {vote.kinoko}</p>
+      <p>たけのこ: {vote.takenoko}</p>
+      <button onClick={voteKinoko}>きのこ</button>
+      <button onClick={voteTakenoko}>たけのこ</button>
+    </>
+  );
+}
+
 
 ReactDOM.render(
-  <App />,
+  <AppOne />,
   document.getElementById('root')
 );
-
-
